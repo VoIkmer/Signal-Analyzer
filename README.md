@@ -23,7 +23,7 @@ The script:
 📂 FFT_Signal_Reconstruction
 ├── Signal Samples/
 │   └── curve1.txt          # Example signal file
-├── fft_reconstruction_en.m  # Main MATLAB script (English version)
+├── analog_2_continuos.m  # Main MATLAB script
 └── README.md                # Project documentation
 ```
 
@@ -56,7 +56,7 @@ Example file format (`curve1.txt`):
 3. Open MATLAB and run the main script:
 
    ```matlab
-   fft_reconstruction_en
+   analog_2_continuos
    ```
 
 4. The script will:
@@ -114,8 +114,8 @@ Displayed in the MATLAB console:
 **Carlos Eduardo**  
 Electrical Engineering Student | MATLAB & Signal Processing Enthusiast  
 
-📧 Contact: [your-email@example.com]  
-🌐 GitHub: [your-github-profile](https://github.com/your-github-profile)
+📧 Contact: [cguimaraesbarbosa03@gmail.com]  
+🌐 GitHub: [VoIkmer](https://github.com/VoIkmer)
 
 ---
 
