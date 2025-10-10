@@ -20,11 +20,11 @@ The script:
 ## 🧩 Folder Structure
 
 ```
-📂 Projeto_FFT_Reconstrucao
+📂 FFT_Signal_Reconstruction
 ├── Signal Samples/
 │   └── curve1.txt          # Example signal file
-├── fft_reconstrucao.m      # Main MATLAB script
-└── README.md               # Project documentation
+├── fft_reconstruction_en.m  # Main MATLAB script (English version)
+└── README.md                # Project documentation
 ```
 
 ---
@@ -56,7 +56,7 @@ Example file format (`curve1.txt`):
 3. Open MATLAB and run the main script:
 
    ```matlab
-   fft_reconstrucao
+   fft_reconstruction_en
    ```
 
 4. The script will:
@@ -70,7 +70,7 @@ Example file format (`curve1.txt`):
 
 ## 📊 Output Example
 
-### 1️⃣ Original vs FFT-Approximated Signal
+### 1️⃣ Original vs FFT-Reconstructed Signal
 A plot comparing the input signal (blue) and its FFT reconstruction (red dashed).
 
 ### 2️⃣ Mean Squared Error
@@ -96,8 +96,8 @@ Displayed in the MATLAB console:
 | `X_fft` | FFT coefficients |
 | `num_harmonics` | Number of harmonics used for reconstruction |
 | `x_rebuilt` | Signal reconstructed from FFT |
-| `erro_mse` | Mean Squared Error between signals |
-| `coeficientes` | Table containing real (`aₙ`) and imaginary (`bₙ`) parts |
+| `error_mse` | Mean Squared Error between signals |
+| `coefficients` | Table containing real (`aₙ`) and imaginary (`bₙ`) parts |
 
 ---
 
@@ -114,8 +114,8 @@ Displayed in the MATLAB console:
 **Carlos Eduardo**  
 Electrical Engineering Student | MATLAB & Signal Processing Enthusiast  
 
-📧 Contact: [cguimaraesbarbosa03@gmail.com]  
-🌐 GitHub: [VoIkmer]([https://github.com/your-github-profil](https://github.com/VoIkmer)e)
+📧 Contact: [your-email@example.com]  
+🌐 GitHub: [your-github-profile](https://github.com/your-github-profile)
 
 ---
 
