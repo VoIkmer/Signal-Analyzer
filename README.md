@@ -21,7 +21,7 @@ The script:
 
 ```
 📂 Projeto_FFT_Reconstrucao
-├── Sinais de Teste/
+├── Signal Samples/
 │   └── curve1.txt          # Example signal file
 ├── fft_reconstrucao.m      # Main MATLAB script
 └── README.md               # Project documentation
@@ -52,7 +52,7 @@ Example file format (`curve1.txt`):
 ## 🚀 How to Use
 
 1. **Clone or download** this repository to your computer.  
-2. Place your signal file (e.g., `curve1.txt`) inside the folder `Sinais de Teste/`.  
+2. Place your signal file (e.g., `curve1.txt`) inside the folder `Signal Samples/`.  
 3. Open MATLAB and run the main script:
 
    ```matlab
@@ -94,8 +94,8 @@ Displayed in the MATLAB console:
 | `t` | Time vector (s) |
 | `x` | Original signal amplitude |
 | `X_fft` | FFT coefficients |
-| `num_harmonicos` | Number of harmonics used for reconstruction |
-| `x_reconstruido` | Signal reconstructed from FFT |
+| `num_harmonics` | Number of harmonics used for reconstruction |
+| `x_rebuilt` | Signal reconstructed from FFT |
 | `erro_mse` | Mean Squared Error between signals |
 | `coeficientes` | Table containing real (`aₙ`) and imaginary (`bₙ`) parts |
 
@@ -103,7 +103,7 @@ Displayed in the MATLAB console:
 
 ## 🧾 Notes
 
-- The number of harmonics (`num_harmonicos`) can be manually adjusted to avoid the **Gibbs phenomenon**.
+- The number of harmonics (`num_harmonics`) can be manually adjusted to avoid the **Gibbs phenomenon**.
 - If the file has **more than two columns**, it will be **automatically transposed** to the correct format.
 - The script uses `'symmetric'` inverse FFT for real-valued reconstruction.
 
@@ -114,8 +114,8 @@ Displayed in the MATLAB console:
 **Carlos Eduardo**  
 Electrical Engineering Student | MATLAB & Signal Processing Enthusiast  
 
-📧 Contact: [your-email@example.com]  
-🌐 GitHub: [your-github-profile](https://github.com/your-github-profile)
+📧 Contact: [cguimaraesbarbosa03@gmail.com]  
+🌐 GitHub: [VoIkmer]([https://github.com/your-github-profil](https://github.com/VoIkmer)e)
 
 ---
 
