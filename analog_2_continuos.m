@@ -3,7 +3,7 @@ clear all;
 close all;
 
 % Carregar dados do arquivo .txt
-data = load('Sinais de Teste\curva1.txt'); % substitua pelo nome do arquivo
+data = load('Sinais de Teste\curve1.txt'); % substitua pelo nome do arquivo
 
 % Verificar se o vetor está transposto e ajustar
 if size(data, 2) > 2
@@ -53,3 +53,4 @@ coeficientes.bn = imag(X_fft(1:num_harmonicos));
 
 disp('Tabela de Coeficientes a_n e b_n:');
 disp(coeficientes);
+
