@@ -2,55 +2,54 @@ clc;
 clear all;
 close all;
 
-% Carregar dados do arquivo .txt
-data = load('Sinais de Teste\curve1.txt'); % substitua pelo nome do arquivo
+% Load data from .txt file
+data = load('Signal Samples\curve1.txt'); % replace with the file name
 
-% Verificar se o vetor está transposto e ajustar
+% Check if the vector is transposed and adjust
 if size(data, 2) > 2
-    data = data'; % Transpor para garantir 2 colunas
+    data = data'; % Transpose to ensure 2 columns
 end
 
-% Extrair tempo e amplitude
-t = data(:, 1); % tempo
-x = data(:, 2); % amplitude do sinal
+% Extract time and amplitude
+t = data(:, 1); % time
+x = data(:, 2); % signal amplitude
 
-% Calcular a FFT do sinal
+% Compute the FFT of the signal
 X_fft = fft(x);
 
-% Definir o número de harmônicos desejado para a reconstrução (ajuste manual)
-num_harmonicos = floor(length(x) / 2); % Exemplo de número de harmônicos para evitar Gibbs
+% Define the desired number of harmonics for reconstruction (manual adjustment)
+num_harmonics = floor(length(x) / 2); % Example value to avoid Gibbs phenomenon
 
-% Limitar a FFT ao número de harmônicos definido
-X_fft(num_harmonicos+1:end-num_harmonicos) = 0;
+% Limit the FFT to the defined number of harmonics
+X_fft(num_harmonics+1:end-num_harmonics) = 0;
 
-% Reconstruir o sinal a partir da FFT
-x_reconstruido = ifft(X_fft, 'symmetric');
+% Reconstruct the signal from the FFT
+x_rebuilt = ifft(X_fft, 'symmetric');
 
-% Calcular Erro Médio Quadrático
-erro_mse = mean((x - x_reconstruido).^2);
+% Calculate Mean Squared Error
+error_mse = mean((x - x_rebuilt).^2);
 
-% Plotar o gráfico de comparação do sinal original e aproximado
+% Plot the comparison between the original and reconstructed signals
 figure;
 plot(t, x, 'b', 'DisplayName', 'Original');
 hold on;
-plot(t, x_reconstruido, 'r--', 'DisplayName', 'Aproximado FFT');
-title('Comparação do Sinal Original com o Sinal Aproximado');
-xlabel('Tempo');
+plot(t, x_rebuilt, 'r--', 'DisplayName', 'FFT Approximation');
+title('Comparison of Original and Reconstructed Signals');
+xlabel('Time');
 ylabel('Amplitude');
 legend;
 
-% Plotar o gráfico do Erro Médio Quadrático (MSE) em nova janela
+% Plot Mean Squared Error (MSE) in a new window
 figure;
-plot(t, (x - x_reconstruido).^2, 'g');
-title(['Erro Médio Quadrático (MSE): ', num2str(erro_mse)]);
-xlabel('Tempo');
-ylabel('Erro Quadrático');
+plot(t, (x - x_rebuilt).^2, 'g');
+title(['Mean Squared Error (MSE): ', num2str(error_mse)]);
+xlabel('Time');
+ylabel('Squared Error');
 
-% Gerar tabela de coeficientes
-coeficientes = table;
-coeficientes.an = real(X_fft(1:num_harmonicos));
-coeficientes.bn = imag(X_fft(1:num_harmonicos));
+% Generate coefficient table
+coefficients = table;
+coefficients.an = real(X_fft(1:num_harmonics));
+coefficients.bn = imag(X_fft(1:num_harmonics));
 
-disp('Tabela de Coeficientes a_n e b_n:');
-disp(coeficientes);
-
+disp('Table of coefficients a_n and b_n:');
+disp(coefficients);
