@@ -35,6 +35,7 @@ The **Mean Squared Error (MSE)** is calculated to validate the reconstruction:
 $$
 MSE = \frac{1}{M} \sum_{i=1}^{M} (x_{original}[i] - x_{reconstructed}[i])^2
 $$
+
 ---
 
 ## 🧩 Folder Structure
