@@ -20,23 +20,21 @@ It also visualizes the trade-off between **signal fidelity** and **compression**
 
 ## ⚙️ Mathematical Background
 
-Any periodic signal (x(t)) can be approximated using a Fourier Series:
+The project relies on the principle that any periodic signal $x(t)$ can be approximated by a sum of sines and cosines (Fourier Series):
 
-[
+$$
 x(t) \approx \frac{a_0}{2} + \sum_{n=1}^{N} \left[ a_n \cos(2\pi n f_0 t) + b_n \sin(2\pi n f_0 t) \right]
-]
+$$
 
 Where:
+* $N$ is the number of **harmonics** used for reconstruction.
+* $a_n$ and $b_n$ are the Fourier coefficients derived from the FFT.
 
-* (N) is the number of **harmonics** used.
-* (a_n) and (b_n) are the Fourier coefficients obtained via FFT.
+The **Mean Squared Error (MSE)** is calculated to validate the reconstruction:
 
-The **Mean Squared Error (MSE)** quantifies reconstruction accuracy:
-
-[
-MSE = \frac{1}{M} \sum_{i=1}^{M} \left( x_{\text{original}}[i] - x_{\text{reconstructed}}[i] \right)^2
-]
-
+$$
+MSE = \frac{1}{M} \sum_{i=1}^{M} (x_{original}[i] - x_{reconstructed}[i])^2
+$$
 ---
 
 ## 🧩 Folder Structure
