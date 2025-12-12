@@ -1,124 +1,133 @@
+---
+
 # 🔍 FFT Signal Reconstruction and Analysis
 
-This MATLAB project performs **signal reconstruction** using the **Fast Fourier Transform (FFT)** from a `.txt` file containing time and amplitude data.  
-It allows you to visualize the **original signal**, its **FFT approximation**, and analyze the **Mean Squared Error (MSE)** between them.
+This project performs **signal reconstruction** using the **Fast Fourier Transform (FFT)**. It processes time-domain data from a `.txt` file, decomposes it into its frequency components, and reconstructs the signal using a selectable number of harmonics.
+
+It also visualizes the trade-off between **signal fidelity** and **compression** (number of harmonics), and computes the **Mean Squared Error (MSE)**.
 
 ---
 
-## 🧠 Overview
+## 🧠 Key Features
 
-The script:
-1. Loads a signal from a `.txt` file (with columns: **time** and **amplitude**).  
-2. Automatically adjusts the data orientation if needed.  
-3. Applies **FFT** to transform the signal into the frequency domain.  
-4. Reconstructs the signal using a selected number of harmonics.  
-5. Calculates and plots the **Mean Squared Error (MSE)** between the original and reconstructed signals.  
-6. Displays a **table of Fourier coefficients** (`aₙ` and `bₙ`).
+* **🤖 Automated Data Handling:** Automatically detects and transposes data columns from `.txt` inputs.
+* **📡 FFT Implementation:** Converts time-domain signals to the frequency domain using MATLAB’s `fft`.
+* **📉 Error Analysis:** Quantifies reconstruction accuracy using MSE.
+* **📊 Visualization:** Generates plots comparing the original and reconstructed signal, along with the reconstruction error.
+* **🧮 Coefficient Extraction:** Outputs Fourier series coefficients ($a_n$ and $b_n$) in a structured table.
+
+---
+
+## ⚙️ Mathematical Background
+
+Any periodic signal (x(t)) can be approximated using a Fourier Series:
+
+[
+x(t) \approx \frac{a_0}{2} + \sum_{n=1}^{N} \left[ a_n \cos(2\pi n f_0 t) + b_n \sin(2\pi n f_0 t) \right]
+]
+
+Where:
+
+* (N) is the number of **harmonics** used.
+* (a_n) and (b_n) are the Fourier coefficients obtained via FFT.
+
+The **Mean Squared Error (MSE)** quantifies reconstruction accuracy:
+
+[
+MSE = \frac{1}{M} \sum_{i=1}^{M} \left( x_{\text{original}}[i] - x_{\text{reconstructed}}[i] \right)^2
+]
 
 ---
 
 ## 🧩 Folder Structure
 
-```
+```text
 📂 FFT_Signal_Reconstruction
 ├── Signal Samples/
-│   └── curve1.txt          # Example signal file
-├── analog_2_continuos.m  # Main MATLAB script
-└── README.md                # Project documentation
-```
-
----
-
-## ⚙️ Requirements
-
-- **MATLAB R2020a** or later (recommended)
-- Basic understanding of Fourier analysis
-- The input `.txt` file must contain **two columns**:
-  - **Column 1:** Time values  
-  - **Column 2:** Amplitude values  
-
-Example file format (`curve1.txt`):
-
-```
-0.00  0.12
-0.01  0.15
-0.02  0.10
-0.03  0.05
-...
+│   ├── curve1.txt          # Primary test signal
+│   └── noisy_data.txt      # Optional noisy signal
+├── analog_2_continuos.m    # Main MATLAB processing script
+└── README.md               # Documentation
 ```
 
 ---
 
 ## 🚀 How to Use
 
-1. **Clone or download** this repository to your computer.  
-2. Place your signal file (e.g., `curve1.txt`) inside the folder `Signal Samples/`.  
-3. Open MATLAB and run the main script:
+### 1. Prerequisites
+
+* **MATLAB R2020a** or newer
+* Input signal file (e.g., `curve1.txt`) placed in the folder: `Signal Samples/`
+
+---
+
+### 2. Input File Format
+
+The `.txt` file must contain **two whitespace-separated columns**:
+
+* **Column 1:** Time (t)
+* **Column 2:** Amplitude (A)
+
+Example:
+
+```text
+0.000  0.125
+0.001  0.150
+0.002  0.100
+...
+```
+
+---
+
+### 3. Execution
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/VoIkmer/FFT_Signal_Reconstruction.git
+   ```
+2. Open MATLAB and navigate to the project folder.
+3. Run the program:
 
    ```matlab
    analog_2_continuos
    ```
-
-4. The script will:
-   - Load and process the signal.
-   - Plot:
-     - The **original vs reconstructed** signal.
-     - The **Mean Squared Error (MSE)**.
-   - Display a **table** with the Fourier coefficients.
+4. Choose your `.txt` file and specify the number of harmonics when prompted.
 
 ---
 
-## 📊 Output Example
+## 📊 Output & Analysis
 
-### 1️⃣ Original vs FFT-Reconstructed Signal
-A plot comparing the input signal (blue) and its FFT reconstruction (red dashed).
+### 1️⃣ Reconstruction Plot
 
-### 2️⃣ Mean Squared Error
-A plot showing the squared error between the signals and the overall MSE value.
+* **Blue Line:** Original signal
+* **Red Dashed Line:** Reconstructed signal using (N) harmonics
 
-### 3️⃣ Coefficient Table
-Displayed in the MATLAB console:
-
-| aₙ (Real) | bₙ (Imag) |
-|------------|------------|
-| 0.1234     | 0.0000     |
-| 0.0876     | -0.0453    |
-| ...        | ...        |
+As (N) increases, reconstruction improves—but the **Gibbs phenomenon** may appear near discontinuities.
 
 ---
 
-## 🧠 Key Variables
+### 2️⃣ Error Analysis
 
-| Variable | Description |
-|-----------|--------------|
-| `t` | Time vector (s) |
-| `x` | Original signal amplitude |
-| `X_fft` | FFT coefficients |
-| `num_harmonics` | Number of harmonics used for reconstruction |
-| `x_rebuilt` | Signal reconstructed from FFT |
-| `error_mse` | Mean Squared Error between signals |
-| `coefficients` | Table containing real (`aₙ`) and imaginary (`bₙ`) parts |
+The script computes and displays the **MSE**:
 
----
-
-## 🧾 Notes
-
-- The number of harmonics (`num_harmonics`) can be manually adjusted to avoid the **Gibbs phenomenon**.
-- If the file has **more than two columns**, it will be **automatically transposed** to the correct format.
-- The script uses `'symmetric'` inverse FFT for real-valued reconstruction.
+* **Low MSE →** Good reconstruction
+* **High MSE →** Increase number of harmonics
 
 ---
 
 ## 🧑‍💻 Author
 
-**Carlos Eduardo**  
-Electrical Engineering Student | MATLAB & Signal Processing Enthusiast  
+**Carlos Eduardo**
+*Electrical Engineering Student 
 
-📧 Contact: [cguimaraesbarbosa03@gmail.com]  
-🌐 GitHub: [VoIkmer](https://github.com/VoIkmer)
+* 📧 Email: **[cguimaraesbarbosa03@gmail.com](mailto:cguimaraesbarbosa03@gmail.com)**
+* 🌐 GitHub: [VoIkmer](https://github.com/VoIkmer)
 
 ---
 
 ## 📚 License
 
-This project is licensed under the **MIT License** — feel free to use, modify, and share it.
+This project is licensed under the **MIT License** — you are free to use, modify, and distribute this software.
+
+---
