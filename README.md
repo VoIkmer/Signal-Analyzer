@@ -119,7 +119,7 @@ The script computes and displays the **MSE**:
 ## 🧑‍💻 Author
 
 **Carlos Eduardo**
-*Electrical Engineering Student 
+Electrical Engineering Student 
 
 * 📧 Email: **[cguimaraesbarbosa03@gmail.com](mailto:cguimaraesbarbosa03@gmail.com)**
 * 🌐 GitHub: [VoIkmer](https://github.com/VoIkmer)
