@@ -83,7 +83,7 @@ Example:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/VoIkmer/FFT_Signal_Reconstruction.git
+   git clone https://github.com/VoIkmer/Signal_Analyzer.git
    ```
 2. Open MATLAB and navigate to the project folder.
 3. Run the program:
