@@ -2,6 +2,10 @@
 
 # 🔍 FFT Signal Reconstruction and Analysis
 
+![MATLAB](https://img.shields.io/badge/Validation-MATLAB-orange?logo=mathworks&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Completed-green)
+![License](https://img.shields.io/badge/License-MIT-green)
+
 This project performs **signal reconstruction** using the **Fast Fourier Transform (FFT)**. It processes time-domain data from a `.txt` file, decomposes it into its frequency components, and reconstructs the signal using a selectable number of harmonics.
 
 It also visualizes the trade-off between **signal fidelity** and **compression** (number of harmonics), and computes the **Mean Squared Error (MSE)**.
