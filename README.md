@@ -14,7 +14,7 @@ MATLAB tool for signal reconstruction using the **Fast Fourier Transform (FFT)**
 
 ![Reconstruction](images/Reconstruction.jpg)
 
-> **Original signal** (black) vs **FFT approximation** (red dashed).  
+> **Original signal** (blue) vs **FFT approximation** (red).  
 > Visual overlap confirms high-fidelity reconstruction across the full time window.
 
 ### Mean Squared Error
