@@ -1,136 +1,142 @@
----
-
 # 🔍 FFT Signal Reconstruction and Analysis
 
 ![MATLAB](https://img.shields.io/badge/Validation-MATLAB-orange?logo=mathworks&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Completed-green)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-This project performs **signal reconstruction** using the **Fast Fourier Transform (FFT)**. It processes time-domain data from a `.txt` file, decomposes it into its frequency components, and reconstructs the signal using a selectable number of harmonics.
+MATLAB tool for signal reconstruction using the **Fast Fourier Transform (FFT)**. Processes time-domain data from a `.txt` file, decomposes it into frequency components, reconstructs the signal using a selectable number of harmonics, and quantifies accuracy via **Mean Squared Error (MSE)**.
 
-It also visualizes the trade-off between **signal fidelity** and **compression** (number of harmonics), and computes the **Mean Squared Error (MSE)**.
+---
+
+## 📊 Results
+
+### Signal reconstruction — original vs FFT approximation
+
+![Reconstruction](images/Reconstruction.jpg)
+
+> **Original signal** (black) vs **FFT approximation** (red dashed).  
+> Visual overlap confirms high-fidelity reconstruction across the full time window.
+
+### Mean Squared Error
+
+![MSE](images/MSE.jpg)
+
+> **MSE = 7.3581 × 10⁻³⁰** — effectively zero numerical error,  
+> confirming that the FFT reconstruction is virtually indistinguishable from the original signal.
 
 ---
 
 ## 🧠 Key Features
 
-* **🤖 Automated Data Handling:** Automatically detects and transposes data columns from `.txt` inputs.
-* **📡 FFT Implementation:** Converts time-domain signals to the frequency domain using MATLAB’s `fft`.
-* **📉 Error Analysis:** Quantifies reconstruction accuracy using MSE.
-* **📊 Visualization:** Generates plots comparing the original and reconstructed signal, along with the reconstruction error.
-* **🧮 Coefficient Extraction:** Outputs Fourier series coefficients ($a_n$ and $b_n$) in a structured table.
+- **Automated Data Handling** — detects and transposes data columns from `.txt` inputs automatically
+- **FFT Implementation** — converts time-domain signals to the frequency domain using MATLAB's `fft`
+- **Selectable harmonics** — user defines N at runtime; more harmonics = higher fidelity
+- **Error Analysis** — quantifies reconstruction accuracy with MSE
+- **Coefficient Table** — outputs Fourier coefficients (aₙ and bₙ) in structured format
+- **Visualization** — side-by-side comparison plot + squared error plot
 
 ---
 
 ## ⚙️ Mathematical Background
 
-The project relies on the principle that any periodic signal $x(t)$ can be approximated by a sum of sines and cosines (Fourier Series):
+Any periodic signal x(t) can be approximated by a Fourier Series:
 
 $$
 x(t) \approx \frac{a_0}{2} + \sum_{n=1}^{N} \left[ a_n \cos(2\pi n f_0 t) + b_n \sin(2\pi n f_0 t) \right]
 $$
 
 Where:
-* $N$ is the number of **harmonics** used for reconstruction.
-* $a_n$ and $b_n$ are the Fourier coefficients derived from the FFT.
+- **N** = number of harmonics selected by the user
+- **aₙ, bₙ** = Fourier coefficients derived from the FFT output
 
-The **Mean Squared Error (MSE)** is calculated to validate the reconstruction:
+Reconstruction accuracy is validated by the **Mean Squared Error (MSE)**:
 
 $$
-MSE = \frac{1}{M} \sum_{i=1}^{M} (x_{original}[i] - x_{reconstructed}[i])^2
+MSE = \frac{1}{M} \sum_{i=1}^{M} \left( x_{\text{original}}[i] - x_{\text{reconstructed}}[i] \right)^2
 $$
+
+For `curve1.txt` with N harmonics, the result was **MSE = 7.3581 × 10⁻³⁰**, confirming near-perfect reconstruction.
 
 ---
 
 ## 🧩 Folder Structure
 
 ```text
-📂 FFT_Signal_Reconstruction
+Signal-Analyzer/
 ├── Signal Samples/
-│   ├── curve1.txt          # Primary test signal
-│   └── noisy_data.txt      # Optional noisy signal
-├── analog_2_continuos.m    # Main MATLAB processing script
-└── README.md               # Documentation
+│   ├── curve1.txt           # Primary test signal
+│   └── noisy_data.txt       # Optional noisy signal
+├── images/
+│   ├── Reconstruction.jpg   # Comparison plot: original vs FFT
+│   └── MSE.jpg              # Squared error over time
+├── analog_2_continuos.m     # Main MATLAB processing script
+└── README.md
 ```
 
 ---
 
 ## 🚀 How to Use
 
-### 1. Prerequisites
+### Prerequisites
 
-* **MATLAB R2020a** or newer
-* Input signal file (e.g., `curve1.txt`) placed in the folder: `Signal Samples/`
+- MATLAB R2020a or newer
+- Input signal file (`.txt`) placed inside `Signal Samples/`
 
----
+### Input File Format
 
-### 2. Input File Format
+Two whitespace-separated columns:
 
-The `.txt` file must contain **two whitespace-separated columns**:
-
-* **Column 1:** Time (t)
-* **Column 2:** Amplitude (A)
-
-Example:
-
-```text
+```
 0.000  0.125
 0.001  0.150
 0.002  0.100
-...
 ```
 
----
+| Column | Description |
+|--------|-------------|
+| 1 | Time (t) |
+| 2 | Amplitude (A) |
 
-### 3. Execution
+### Execution
 
-1. Clone the repository:
+```bash
+git clone https://github.com/VoIkmer/Signal_Analyzer.git
+```
 
-   ```bash
-   git clone https://github.com/VoIkmer/Signal_Analyzer.git
-   ```
-2. Open MATLAB and navigate to the project folder.
-3. Run the program:
-
+1. Open MATLAB and navigate to the project folder
+2. Run:
    ```matlab
    analog_2_continuos
    ```
-4. Choose your `.txt` file and specify the number of harmonics when prompted.
+3. Select your `.txt` file when prompted
+4. Enter the number of harmonics N
 
 ---
 
-## 📊 Output & Analysis
+## 📈 Output & Analysis
 
-### 1️⃣ Reconstruction Plot
+| Output | Description |
+|--------|-------------|
+| Reconstruction plot | Original (black) vs FFT approximation (red dashed) |
+| MSE plot | Squared error at each time step |
+| Coefficient table | aₙ and bₙ values for each harmonic |
+| MSE value | Printed in the plot title and command window |
 
-* **Blue Line:** Original signal
-* **Red Dashed Line:** Reconstructed signal using (N) harmonics
-
-As (N) increases, reconstruction improves—but the **Gibbs phenomenon** may appear near discontinuities.
-
----
-
-### 2️⃣ Error Analysis
-
-The script computes and displays the **MSE**:
-
-* **Low MSE →** Good reconstruction
-* **High MSE →** Increase number of harmonics
+> **Note on Gibbs phenomenon:** near signal discontinuities, increasing N may introduce overshoot. This is a known theoretical property of Fourier reconstruction, not a script error.
 
 ---
 
 ## 🧑‍💻 Author
 
-**Carlos Eduardo**
-Electrical Engineering Student 
+**Carlos Eduardo**  
+Electrical Engineering Student — UFBA
 
-* 📧 Email: **[cguimaraesbarbosa03@gmail.com](mailto:cguimaraesbarbosa03@gmail.com)**
-* 🌐 GitHub: [VoIkmer](https://github.com/VoIkmer)
+- Email: cguimaraesbarbosa03@gmail.com
+- GitHub: [VoIkmer](https://github.com/VoIkmer)
+- LinkedIn: [carl0sedu](https://www.linkedin.com/in/carl0sedu/)
 
 ---
 
 ## 📚 License
 
-This project is licensed under the **MIT License** — you are free to use, modify, and distribute this software.
-
----
+MIT License — free to use, modify, and distribute.
